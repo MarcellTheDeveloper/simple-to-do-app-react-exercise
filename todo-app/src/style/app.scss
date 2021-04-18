@@ -1,0 +1,297 @@
+@import 'reset';
+@import 'variables';
+@import 'mixins';
+
+#root {
+  height: 500vh;
+  background-color: $backgroundC;
+  padding: 50px;
+  overflow-x: scroll;
+  transition: 0.4s;
+
+  #themeChange {
+    width: 140px;
+    margin-top: -20px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    p {
+      margin-top: 5px;
+    }
+
+    input:checked + i {
+      background-color: $backgroundDarkTC;
+    }
+  }
+}
+
+.deleteDashBtn {
+  width: 60px;
+  height: 40px;
+  background-color: $backgroundC2;
+  border-radius: $borderR10;
+  box-shadow: $boxShadow;
+  font-size: 24px;
+  text-align: center;
+  transition: 0.2s;
+
+  &:hover {
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+
+  svg {
+    width: auto;
+    height: 35px;
+    fill: $deletButtonC;
+    stroke: $deletButtonC;
+
+    g {
+      transition: 0.4s linear;
+    }
+  }
+
+  &:hover > svg {
+    g {
+      transform: rotate(8deg);
+      transform-origin: top right;
+    }
+
+    g,
+    path {
+      fill: $hoverDarkC;
+      stroke: $hoverDarkC;
+    }
+  }
+}
+
+.dashBoardContainer {
+  height: 90vh;
+  display: flex;
+
+  .dashboard {
+    background-color: $backgroundC2;
+    margin-right: 50px;
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s ease-in-out;
+
+    div {
+      min-width: 283px;
+
+      .dashboardName {
+        background-color: transparent;
+        padding: 10px 0 40px 0px;
+        font-size: 20px;
+      }
+
+      .addCardBtn {
+        width: 40px;
+        height: 40px;
+        color: $textC;
+        background-color: $backgroundC2;
+        font-size: 24px;
+        text-align: center;
+        border-radius: $borderR10;
+        box-shadow: $boxShadow;
+        transition: 0.2s;
+
+        &:hover {
+          color: $deletButtonC;
+          transform: scale(1.2);
+          cursor: pointer;
+        }
+      }
+    }
+
+    .textInp {
+      height: auto;
+      background-color: $backgroundC2;
+      margin-bottom: 50px;
+      border-radius: $borderR15;
+      box-shadow: $boxShadow;
+
+      .cardTitleHolder {
+        @include displayCenter;
+        width: 100%;
+
+        .cardTitle {
+          width: 80%;
+          margin: 30px 0;
+          padding-left: 5px;
+          border-radius: $borderR10;
+          //box-shadow: $boxShadowSmall;
+          height: 40px;
+          font-size: 20px;
+          //font-weight: 600;
+          z-index: 99;
+        }
+
+        button {
+          width: 25px;
+          height: 25px;
+          color: $deletButtonC;
+          background-color: $backgroundC2;
+          font-size: 16px;
+          text-align: center;
+          border-radius: 5px;
+          box-shadow: 0px 0px 5px 3px rgba(0, 0, 0, 0.07);
+          transition: 0.2s;
+
+          &:hover {
+            color: $hoverDarkC;
+            transform: scale(1.2);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+  .deleteDashBtnContainer {
+    width: 80%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+
+    .deleteDashBtn {
+      text-align: center;
+      position: relative;
+      z-index: 999;
+    }
+  }
+
+  .newItem {
+    opacity: 0;
+    animation: grow 0.8s ease-in-out forwards;
+  }
+
+  .addDashBtn {
+    display: flex;
+    align-items: flex-start;
+
+    input {
+      color: $textC;
+      background-color: $backgroundC2;
+      padding: 20px;
+      font-size: 20px;
+      border-radius: $borderR15;
+      box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+      transition: 0.2s;
+
+      &:hover {
+        color: $hoverDarkC;
+        box-shadow: 0px 0px 13px 7px rgba(0, 0, 0, 0.08);
+        transform: scale(1.1);
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.formSwitch {
+  @include displayCenter;
+  margin-top: 10px;
+  padding-bottom: 30px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+
+  input {
+    display: none;
+
+    &:checked + i {
+      background-color: $deletButtonC;
+    }
+
+    &:checked + i::before {
+      transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0);
+    }
+
+    &:checked + i::after {
+      transform: translate3d(22px, 2px, 0);
+    }
+  }
+
+  i {
+    width: 46px;
+    height: 26px;
+    background-color: $backgroundC3;
+    margin-right: 0.5rem;
+    vertical-align: text-bottom;
+    border-radius: 23px;
+    display: inline-block;
+    position: relative;
+    transition: all 0.2s linear;
+
+    &::before {
+      content: '';
+      width: 42px;
+      height: 22px;
+      background-color: $backgroundC2;
+      border-radius: $borderR11;
+      position: absolute;
+      left: 0;
+      transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+      transition: all 0.25s linear;
+    }
+
+    &::after {
+      content: '';
+      width: 22px;
+      height: 22px;
+      background-color: $backgroundC2;
+      border-radius: $borderR11;
+      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+      position: absolute;
+      left: 0;
+      transform: translate3d(2px, 2px, 0);
+      transition: all 0.2s ease-in-out;
+    }
+  }
+
+  &:active i::after {
+    width: 28px;
+    transform: translate3d(2px, 2px, 0);
+  }
+
+  &:active input:checked + i::after {
+    transform: translate3d(16px, 2px, 0);
+  }
+}
+
+.cardDesc {
+  @include displayCenter;
+  width: 100%;
+  margin-bottom: 20px;
+  opacity: 100% !important;
+
+  .inputClass {
+    width: 75%;
+    height: 150px;
+    margin: 10px 0 30px;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 500;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.05);
+  }
+}
+
+//keyframes
+@keyframes grow {
+  to {
+    opacity: 1;
+  }
+}
+
+//toggled
+.themeChangeClr {
+  background-color: $themeChangeC !important;
+
+  .themeChangeTxtClr {
+    color: $backgroundC2;
+  }
+}
